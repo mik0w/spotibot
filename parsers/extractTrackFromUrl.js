@@ -2,12 +2,12 @@ const resolveShortLink = require('./resolveShortLink');
 
 async function extractTrackIdFromUrl(url) {
     const pattern = /.+\/([A-Za-z0-9]+)/;
-    const shortLinkPattern = /spotify.link/;
+    const shortLinkPattern = /https:\/\/spotify.link\/([A-Za-z0-9]+)/;
 
     const shortLinkMatch = url.match(shortLinkPattern);
 
     if (shortLinkMatch) {
-        url = await resolveShortLink(url);
+        url = await resolveShortLink(shortLinkMatch[0]);
     }
 
     const matches = url.match(pattern);
